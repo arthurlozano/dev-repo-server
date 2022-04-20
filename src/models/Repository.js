@@ -21,4 +21,4 @@ const repositorySchema = new mongoose.Schema(
   }
 );
 
-export default mongoose.model('User', repositorySchema);
+export default mongoose.model('Repository', repositorySchema);
