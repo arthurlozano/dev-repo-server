@@ -1,14 +1,24 @@
 import { Router } from "express";
 
+import auth from "./middlewares/auth"
+
 import HelloController from "./controllers/HelloController";
+import SessionsController from './controllers/SessionsController';
 import RepositoriesController from "./controllers/RepositoriesController";
 import UsersController from "./controllers/UsersController";
 
 
 const routes = new Router();
 
+//Controllers publico
+routes.post('/sessions', SessionsController.create);
 routes.get('/hello', HelloController.index);
 
+
+routes.use(auth);
+
+//Controllers privados
+// tudo daqui pra baixo será protegido por JWT
 routes.get('/users', UsersController.index);
 routes.get('/users/:id', UsersController.show);
 routes.post('/users', UsersController.create);
